@@ -1,4 +1,5 @@
 ---
+import BaseLayout from "../layout/BaseLayout.astro";
 const pageTitle = "About Me";
 const identity = {
 	firstName: "Sarah",
@@ -11,20 +12,25 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 const happy = true;
 const finished = false;
 const goal = 3;
+const skillsColors = "crimson";
+const fontWeight = "bold";
+const textCase = "uppercase"
 ---
+	<style is:global define:vars={{skillsColors, fontWeight, textCase}}>
+			h1 {
+				color: purple;
+				font-size: 4rem;
+			}
+			.skills {
+				color: var(--skillsColors);
+				font-weight: var(--fontWeight);
+				text-transform var(--textCase);
+			}
+		</style>
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-		<a href="/">Home</a>
-		<a href="/about/">About</a>
-		<h1>{pageTitle}</h1>
-		<h2>... and my new Astro site!</h2>
+		<BaseLayout pageTitle={pageTitle}>
+		
+			<h2>... and my new Astro site!</h2>
 		<p>
 			I am working through Astro's introductory tutorial. This is the
 			second page on my website, and it's the first one I built myself!
@@ -51,12 +57,12 @@ const goal = 3;
 				)
 			}
 		</ul>
-		<p>My skills are : </p>
+		<p class="skills">My skills are :</p>
 		<ul>
-			{skills.map(sk  => <li>{sk}</li>)}
+			{skills.map((sk) => <li>{sk}</li>)}
 		</ul>
 		{happy && <p>Yay!</p>}
 		{finished && <p>Yay!</p>}
 		{goal === 3 ? <p>Yay!</p> : <p>Nope.</p>}
-	</body>
-</html>
+	</BaseLayout>
+		

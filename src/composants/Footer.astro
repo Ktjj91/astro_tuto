@@ -1,0 +1,19 @@
+---
+import Social from "./Social.astro";
+const socials = [
+    { platform: "github", username: "withastro" },
+    { platform: "twitter", username: "astrodotbuild" },
+    { platform: "youtube", username: "astrodotbuild" },
+];
+---
+
+<style>
+    footer {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+</style>
+<footer>
+    {socials.map((social) => <Social {...social} />)}
+</footer>
